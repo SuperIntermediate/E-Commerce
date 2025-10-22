@@ -32,7 +32,7 @@
             <td>{{ o.items.length }}</td>
             <td>{{ o.total | currency }}</td>
             <td>
-              <select [ngModel]="editedStatus()[o.id] ?? o.status" (ngModelChange)="setEdit(o.id, $event)" name="status-{{o.id}}">
+              <select [ngModel]="editedStatus()[o.id]" (ngModelChange)="setEdit(o.id, $event)" name="status-{{o.id}}">
                 <option *ngFor="let s of statuses" [value]="s">{{ s }}</option>
               </select>
             </td>

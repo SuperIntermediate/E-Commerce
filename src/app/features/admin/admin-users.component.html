@@ -17,7 +17,7 @@
         <td>{{ u.email }}</td>
         <td>{{ u.name }}</td>
         <td>
-          <select [ngModel]="roleByEmail()[u.email] ?? u.role" (ngModelChange)="changeRole(u.email, $event)" name="role-{{u.email}}">
+          <select [ngModel]="roleByEmail()[u.email]" (ngModelChange)="changeRole(u.email, $event)" name="role-{{u.email}}">
             <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
           </select>
         </td>
