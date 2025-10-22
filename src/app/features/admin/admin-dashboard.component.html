@@ -1,0 +1,17 @@
+<section class="admin">
+  <header class="toolbar">
+    <h1>Admin Dashboard</h1>
+  </header>
+
+  <nav class="links">
+    <a class="link" [routerLink]="['/admin/products']">Products</a>
+    <a class="link" [routerLink]="['/admin/categories']">Categories</a>
+    <a class="link" [routerLink]="['/admin/users']">Users</a>
+    <a class="link" [routerLink]="['/admin/orders']">Orders</a>
+    <a class="link" [routerLink]="['/admin/analytics']">Analytics</a>
+  </nav>
+
+  <p class="hint">Use the links above to manage the store.</p>
+
+  <router-outlet></router-outlet>
+</section>

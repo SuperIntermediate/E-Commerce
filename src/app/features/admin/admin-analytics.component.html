@@ -1,0 +1,75 @@
+<section class="admin-analytics">
+  <header class="toolbar">
+    <h2>Analytics Dashboard</h2>
+  </header>
+
+  <div class="kpis">
+    <div class="kpi">
+      <div class="label">Total Revenue</div>
+      <div class="value">{{ totalRevenue() | currency }}</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Orders</div>
+      <div class="value">{{ orders().length }}</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Placed</div>
+      <div class="value">{{ statusCounts()['PLACED'] ?? 0 }}</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Processing</div>
+      <div class="value">{{ statusCounts()['PROCESSING'] ?? 0 }}</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Shipped</div>
+      <div class="value">{{ statusCounts()['SHIPPED'] ?? 0 }}</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Delivered</div>
+      <div class="value">{{ statusCounts()['DELIVERED'] ?? 0 }}</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Cancelled</div>
+      <div class="value">{{ statusCounts()['CANCELLED'] ?? 0 }}</div>
+    </div>
+  </div>
+
+  <section class="chart">
+    <h3>Revenue by Month</h3>
+    <ul class="bars">
+      @for (pair of revenueByMonth(); track pair[0]) {
+        <li class="bar">
+          <span class="label">{{ pair[0] }}</span>
+          <span class="value">{{ pair[1] | currency:'INR':'symbol':'1.0-0' }}</span>
+          <span class="fill" [style.width.%]="(pair[1] / (totalRevenue() || 1)) * 100"></span>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <section class="chart">
+    <h3>Top Products (Units Sold)</h3>
+    <ul class="bars">
+      @for (p of topProducts(); track p.title) {
+        <li class="bar">
+          <span class="label">{{ p.title }}</span>
+          <span class="value">{{ p.quantity }}</span>
+          <span class="fill" [style.width.%]="(p.quantity / (topProducts()[0]?.quantity || 1)) * 100"></span>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <section class="chart">
+    <h3>Revenue by Category</h3>
+    <ul class="bars">
+      @for (entry of revenueByCategory().entries; track entry[0]) {
+        <li class="bar">
+          <span class="label">{{ entry[0] }}</span>
+          <span class="value">{{ entry[1] | currency:'INR':'symbol':'1.0-0' }}</span>
+          <span class="fill" [style.width.%]="(entry[1] / (revenueByCategory().max || 1)) * 100"></span>
+        </li>
+      }
+    </ul>
+  </section>
+</section>

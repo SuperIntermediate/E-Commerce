@@ -1,0 +1,59 @@
+<section class="products-page">
+  <header class="toolbar">
+    <h1>Products</h1>
+    <div class="controls">
+      <input
+        type="text"
+        placeholder="Search products..."
+        #query
+        [value]="searchQuery()"
+        (input)="searchQuery.set(query.value)"
+        aria-label="Search products"
+      />
+
+      <select
+        #categorySel
+        [value]="selectedCategory()"
+        (change)="selectedCategory.set(categorySel.value)"
+        aria-label="Filter by category"
+      >
+        @for (cat of categories(); track cat) {
+          <option [value]="cat">{{ cat | titlecase }}</option>
+        }
+      </select>
+
+      <select
+        #sortSel
+        [value]="sortBy()"
+        (change)="setSort(sortSel.value)"
+        aria-label="Sort products"
+      >
+        <option value="popularity_desc">Sort: Popularity</option>
+        <option value="price_asc">Sort: Price (Low → High)</option>
+        <option value="price_desc">Sort: Price (High → Low)</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="grid">
+    @for (p of filteredProducts(); track p.id) {
+      <article class="card">
+        <img [src]="p.imageUrl" [alt]="p.title" loading="lazy" />
+        <div class="card-body">
+          <h2 class="title">{{ p.title }}</h2>
+          <p class="price">{{ p.price | currency }}</p>
+          <p class="meta">Category: {{ p.category }} • Popularity: {{ p.popularity }}</p>
+          <p class="desc">{{ p.description }}</p>
+          <a class="details" [routerLink]="['/products', p.id]">View Details</a>
+          <button class="wish" (click)="toggleWishlist(p)">{{ isWishlisted(p) ? 'Remove from Wishlist' : 'Add to Wishlist' }}</button>
+          <button class="add" (click)="addToCart(p)">Add to Cart</button>
+
+        </div>
+      </article>
+    }
+
+    @if (filteredProducts().length === 0) {
+      <p class="empty">No products found. Try changing filters or search.</p>
+    }
+  </div>
+</section>

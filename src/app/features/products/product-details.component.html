@@ -1,0 +1,63 @@
+@if (product()) {
+  <section class="details-page">
+    <a class="back" [routerLink]="['/products']">← Back to Products</a>
+
+    <div class="hero">
+      <img [src]="product()!.imageUrl" [alt]="product()!.title" />
+      <div class="info">
+        <h1>{{ product()!.title }}</h1>
+        <p class="price">{{ product()!.price | currency }}</p>
+        <p class="meta">Category: {{ product()!.category }} • Popularity: {{ product()!.popularity }}</p>
+        <p class="desc">{{ product()!.description }}</p>
+      </div>
+    </div>
+
+    <div class="reviews">
+      <h2>Reviews ({{ product()!.reviews.length }})</h2>
+
+      <div class="review-form">
+        <textarea placeholder="Write your review..." [value]="reviewComment()" (input)="reviewComment.set(($any($event.target).value || '').slice(0, 500))"></textarea>
+        <div class="controls">
+          <label>
+            Rating
+            <select [value]="reviewRating()" (change)="reviewRating.set((+$any($event.target).value) || 5)">
+              <option [value]="5">5</option>
+              <option [value]="4">4</option>
+              <option [value]="3">3</option>
+              <option [value]="2">2</option>
+              <option [value]="1">1</option>
+            </select>
+          </label>
+          <button (click)="submitReview()">Submit Review</button>
+        </div>
+      </div>
+
+      @if (product()!.reviews.length === 0) {
+        <p class="empty">No reviews yet.</p>
+      } @else {
+        <ul class="review-list">
+          @for (r of product()!.reviews; track r.date) {
+            <li class="review">
+              <div class="review-header">
+                <span>{{ r.user }}</span>
+                <span>{{ r.rating }}/5 • {{ r.date }}</span>
+              </div>
+              <p class="review-comment">{{ r.comment }}</p>
+            </li>
+          }
+        </ul>
+      }
+    </div>
+    <div class="actions">
+      <label>
+        Quantity
+        <input type="number" min="1" #qty [value]="quantity()" (input)="quantity.set(qty.valueAsNumber || 1)" />
+      </label>
+      <button class="wish" (click)="toggleWishlist()">{{ isWishlisted() ? 'Remove from Wishlist' : 'Add to Wishlist' }}</button>
+      <button class="add" (click)="addToCart()">Add to Cart</button>
+    </div>
+
+  </section>
+} @else {
+  <p class="empty">Product not found.</p>
+}

@@ -1,0 +1,154 @@
+<section class="checkout-page">
+  <header class="toolbar">
+    <h1>Checkout</h1>
+    <a class="back" [routerLink]="['/cart']">← Back to Cart</a>
+  </header>
+
+  @if (hasItems()) {
+    <div class="layout">
+      <form class="address" novalidate>
+        <h2>Shipping Address</h2>
+        <div class="grid">
+          <label>
+            Name
+            <input name="name" type="text" [(ngModel)]="address.name" required placeholder="Full name" />
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" [(ngModel)]="address.email" required placeholder="you@example.com" />
+          </label>
+          <label>
+            Phone
+            <input name="phone" type="tel" [(ngModel)]="address.phone" placeholder="Phone number" />
+          </label>
+          <label class="full">
+            Address Line 1
+            <input name="line1" type="text" [(ngModel)]="address.line1" required placeholder="Street address" />
+          </label>
+          <label class="full">
+            Address Line 2
+            <input name="line2" type="text" [(ngModel)]="address.line2" placeholder="Apartment, suite, etc. (optional)" />
+          </label>
+          <label>
+            City
+            <input name="city" type="text" [(ngModel)]="address.city" required placeholder="City" />
+          </label>
+          <label>
+            State
+            <input name="state" type="text" [(ngModel)]="address.state" required placeholder="State / Province" />
+          </label>
+          <label>
+            Postal Code
+            <input name="postalCode" type="text" [(ngModel)]="address.postalCode" required placeholder="ZIP / Postal code" />
+          </label>
+          <label class="full">
+            Country
+            <input name="country" type="text" [(ngModel)]="address.country" required placeholder="Country" />
+          </label>
+        </div>
+      </form>
+
+      <div class="summary">
+        <h2>Order Summary</h2>
+        <ul class="items">
+          @for (item of cart.items(); track item.productId) {
+            <li>
+              <span class="title">{{ item.title }}</span>
+              <span class="qty">× {{ item.quantity }}</span>
+              <span class="price">{{ (item.price * item.quantity) | currency }}</span>
+            </li>
+          }
+        </ul>
+
+        <div class="coupon">
+          <label>
+            Coupon Code
+            <input type="text" [value]="couponCode()" (input)="couponCode.set(($any($event.target).value || '').trim().toUpperCase())" placeholder="Enter coupon code" />
+          </label>
+          <button (click)="applyCoupon()">Apply</button>
+          @if (appliedCode()) {
+            <span class="applied">Applied: {{ appliedCode() }}</span>
+            <button class="remove" (click)="clearCoupon()">Remove</button>
+          }
+          @if (couponError()) {
+            <div class="error">{{ couponError() }}</div>
+          }
+        </div>
+
+        <div class="total">Subtotal: {{ cart.totalPrice() | currency }}</div>
+        @if (discount() > 0) {
+          <div class="total">Discount: -{{ discount() | currency }}</div>
+        }
+        <div class="total">Total: {{ totalAfterDiscount() | currency }}</div>
+
+        <div class="payment">
+          <h3>Payment</h3>
+          <div class="methods">
+            <label>
+              <input type="radio" name="method" [checked]="paymentMethod() === 'paypal'" (change)="paymentMethod.set('paypal')" />
+              PayPal
+            </label>
+            <label>
+              <input type="radio" name="method" [checked]="paymentMethod() === 'razorpay'" (change)="paymentMethod.set('razorpay')" />
+              Razorpay (Card/Netbanking)
+            </label>
+            <label>
+              <input type="radio" name="method" [checked]="paymentMethod() === 'upi'" (change)="paymentMethod.set('upi')" />
+              UPI (Razorpay)
+            </label>
+            <label>
+              <input type="radio" name="method" [checked]="paymentMethod() === 'paytm'" (change)="paymentMethod.set('paytm')" />
+              Paytm
+            </label>
+            <label>
+              <input type="radio" name="method" [checked]="paymentMethod() === 'gpay'" (change)="paymentMethod.set('gpay')" />
+              Google Pay
+            </label>
+            <label>
+              <input type="radio" name="method" [checked]="paymentMethod() === 'stripe'" (change)="paymentMethod.set('stripe')" />
+              Stripe
+            </label>
+          </div>
+
+          @if (paymentMethod() === 'paypal') {
+            <div id="paypal-buttons"></div>
+            <button (click)="renderPayPalButtons()" [disabled]="!isAddressValid() || isPaying()">Initialize PayPal</button>
+            <div class="hint">Use PayPal Sandbox credentials for testing.</div>
+          }
+
+          @if (paymentMethod() === 'razorpay') {
+            <button (click)="payWithRazorpay()" [disabled]="!isAddressValid() || isPaying()">Pay with Razorpay</button>
+          }
+
+          @if (paymentMethod() === 'upi') {
+            <label>
+              UPI VPA
+              <input type="text" placeholder="name@bank" [value]="upiVpa()" (input)="upiVpa.set(($any($event.target).value || '').trim())" />
+            </label>
+            <button (click)="payWithUpi()" [disabled]="!isAddressValid() || isPaying()">Pay via UPI</button>
+            <div class="hint">Enter your UPI ID (e.g., name@bank). Powered by Razorpay.</div>
+          }
+
+          @if (paymentMethod() === 'paytm') {
+            <button (click)="payWithPaytm()" [disabled]="!isAddressValid() || isPaying()">Pay with Paytm</button>
+            <div class="hint">Requires Paytm MID and backend initiation endpoint.</div>
+          }
+
+          @if (paymentMethod() === 'gpay') {
+            <button (click)="payWithGooglePay()" [disabled]="!isAddressValid() || isPaying()">Pay with Google Pay</button>
+            <div class="hint">Demo routes to Stripe Checkout. Configure Stripe for testing.</div>
+          }
+
+          @if (paymentMethod() === 'stripe') {
+            <button (click)="payWithStripe()" [disabled]="!isAddressValid() || isPaying()">Pay with Stripe</button>
+            <div class="hint">Stripe will redirect to Checkout or a Payment Link.</div>
+          }
+        </div>
+
+        <button class="place" [disabled]="!isAddressValid()" (click)="placeOrder()">Place Order</button>
+      </div>
+    </div>
+  } @else {
+    <p class="empty">Your cart is empty. Add items before checkout.</p>
+  }
+</section>

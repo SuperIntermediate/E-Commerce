@@ -1,0 +1,77 @@
+<section class="admin-products">
+  <header class="header">
+    <h2>Products Management</h2>
+    <div class="mode" *ngIf="selectedId() as id; else adding">
+      <span class="pill">Editing product #{{ id }}</span>
+    </div>
+    <ng-template #adding>
+      <span class="pill">Adding new product</span>
+    </ng-template>
+  </header>
+
+  <form class="product-form" (ngSubmit)="save()">
+    <div class="row">
+      <label>Title</label>
+      <input type="text" [ngModel]="form().title" (ngModelChange)="updateForm('title', $event)" name="title" required />
+    </div>
+    <div class="row">
+      <label>Price</label>
+      <input type="number" step="0.01" #price [ngModel]="form().price" (input)="updateForm('price', price.valueAsNumber || 0)" name="price" required />
+    </div>
+    <div class="row">
+      <label>Category</label>
+      <input type="text" list="categories" [ngModel]="form().category" (ngModelChange)="updateForm('category', $event)" name="category" required />
+      <datalist id="categories">
+        <option *ngFor="let c of categories()" [value]="c"></option>
+      </datalist>
+    </div>
+    <div class="row">
+      <label>Stock</label>
+      <input type="number" #stock [ngModel]="form().stock" (input)="updateForm('stock', stock.valueAsNumber || 0)" name="stock" />
+    </div>
+    <div class="row">
+      <label>Image URL</label>
+      <input type="text" [ngModel]="form().imageUrl" (ngModelChange)="updateForm('imageUrl', $event)" name="imageUrl" />
+    </div>
+    <div class="row">
+      <label>Popularity</label>
+      <input type="number" #pop [ngModel]="form().popularity" (input)="updateForm('popularity', pop.valueAsNumber || 0)" name="popularity" />
+    </div>
+    <div class="row">
+      <label>Description</label>
+      <textarea rows="3" [ngModel]="form().description" (ngModelChange)="updateForm('description', $event)" name="description"></textarea>
+    </div>
+
+    <div class="actions">
+      <button class="primary" type="submit">{{ selectedId() ? 'Save Changes' : 'Add Product' }}</button>
+      <button type="button" (click)="clearForm()">Clear</button>
+    </div>
+  </form>
+
+  <h3>All Products</h3>
+  <table class="products-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Stock</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of list()">
+        <td>{{ p.id }}</td>
+        <td>{{ p.title }}</td>
+        <td>{{ p.price | currency }}</td>
+        <td>{{ p.category }}</td>
+        <td>{{ p.stock }}</td>
+        <td>
+          <button (click)="selectForEdit(p)">Edit</button>
+          <button class="danger" (click)="delete(p.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

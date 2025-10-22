@@ -1,0 +1,54 @@
+<section class="orders-page">
+  <header class="toolbar">
+    <h1>Your Orders</h1>
+    <a class="back" [routerLink]="['/products']">← Continue Shopping</a>
+  </header>
+
+  @if (orders().length > 0) {
+    <table class="orders-table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Date</th>
+          <th>Items</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (o of orders(); track o.id) {
+          <tr>
+            <td>{{ o.id }}</td>
+            <td>{{ o.date }}</td>
+            <td>{{ o.items.length }}</td>
+            <td>{{ o.total | currency }}</td>
+            <td>
+              <span class="status" [class.cancelled]="o.status === 'CANCELLED'">{{ o.status }}</span>
+            </td>
+            <td>
+              @if (o.status === 'PLACED') {
+                <button class="cancel" (click)="cancel(o.id)">Cancel Order</button>
+              } @else {
+                <span class="muted">—</span>
+              }
+            </td>
+          </tr>
+          <tr class="order-items">
+            <td colspan="6">
+              <ul>
+                @for (item of o.items; track item.productId) {
+                  <li>
+                    {{ item.title }} × {{ item.quantity }} — {{ (item.price * item.quantity) | currency }}
+                  </li>
+                }
+              </ul>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <p class="empty">No orders yet.</p>
+  }
+</section>

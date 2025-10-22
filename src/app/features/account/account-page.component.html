@@ -1,0 +1,22 @@
+<section class="account">
+  <header class="toolbar">
+    <h1>Account</h1>
+    <button class="logout" (click)="logout()">Logout</button>
+  </header>
+
+  @if (auth.user()) {
+    <div class="info">
+      <p><strong>Name:</strong> {{ auth.user()!.name }}</p>
+      <p><strong>Email:</strong> {{ auth.user()!.email }}</p>
+      <p><strong>Token:</strong> {{ tokenSnippet() }}</p>
+    </div>
+
+    <nav class="links">
+      <a class="link" [routerLink]="['/orders']">View Orders</a>
+      <a class="link" [routerLink]="['/products']">Continue Shopping</a>
+    </nav>
+  } @else {
+    <p>You are not logged in.</p>
+    <a class="link" [routerLink]="['/login']">Login</a>
+  }
+</section>

@@ -1,0 +1,33 @@
+<section class="admin-categories">
+  <header class="toolbar">
+    <h2>Categories Management</h2>
+  </header>
+
+  <div class="panel">
+    <h3>Add Category</h3>
+    <div class="row">
+      <input type="text" placeholder="New category name" [ngModel]="newCategory()" (ngModelChange)="newCategory.set($event)" name="newCategory" />
+      <button class="primary" (click)="add()">Add</button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>Rename Category</h3>
+    <div class="row">
+      <select [ngModel]="renameFrom()" (ngModelChange)="renameFrom.set($event)" name="renameFrom">
+        <option value="" disabled>Select category to rename</option>
+        <option *ngFor="let c of categories()" [value]="c">{{ c }}</option>
+      </select>
+      <input type="text" placeholder="New name" [ngModel]="renameTo()" (ngModelChange)="renameTo.set($event)" name="renameTo" />
+      <button class="primary" (click)="rename()" [disabled]="!renameFrom() || !renameTo()">Rename</button>
+    </div>
+  </div>
+
+  <h3>All Categories</h3>
+  <ul class="category-list">
+    <li *ngFor="let c of categories()" class="item">
+      <span class="name">{{ c }}</span>
+      <button class="danger" (click)="delete(c)">Delete</button>
+    </li>
+  </ul>
+</section>

@@ -1,0 +1,281 @@
+.home
+  display: grid
+  gap: 2rem
+
+.hero-slider
+  position: relative
+  height: 380px
+  border-radius: 12px
+  overflow: hidden
+  box-shadow: 0 12px 40px rgba(0,0,0,.15)
+
+.slide
+  position: absolute
+  inset: 0
+  display: grid
+  place-items: center
+  opacity: 0
+  transform: translateX(8%) scale(1.02)
+  transition: opacity .6s ease, transform .8s cubic-bezier(.22,.68,0,1)
+  background-size: 200% 200%
+  animation: gradientMove 15s ease infinite
+
+  &.active
+    opacity: 1
+    transform: translateX(0) scale(1)
+
+  .content
+    text-align: center
+    color: #fff
+    text-shadow: 0 2px 10px rgba(0,0,0,.25)
+    transform: translate3d(var(--mx), var(--my), 0)
+    transition: transform .08s linear
+    will-change: transform
+
+    h1
+      font-size: 2.4rem
+      line-height: 1.1
+      margin: 0 0 .5rem
+
+    p
+      font-size: 1.1rem
+      opacity: .9
+      margin: 0 0 1.2rem
+
+    .cta
+      display: inline-block
+      background: #FF9900
+      color: #0f1111
+      padding: .75rem 1.25rem
+      border-radius: 999px
+      font-weight: 700
+      text-decoration: none
+      box-shadow: 0 6px 18px rgba(255,153,0,.45)
+      transition: transform .2s ease, box-shadow .2s ease
+      will-change: transform
+
+      &:hover
+        transform: translateY(-2px)
+        box-shadow: 0 10px 24px rgba(255,153,0,.55)
+
+@keyframes gradientMove
+  0%
+    background-position: 0% 50%
+  50%
+    background-position: 100% 50%
+  100%
+    background-position: 0% 50%
+
+.nav
+  position: absolute
+  top: 50%
+  transform: translateY(-50%)
+  width: 44px
+  height: 44px
+  border: none
+  border-radius: 50%
+  background: rgba(255,255,255,.9)
+  color: #0f1111
+  font-size: 24px
+  cursor: pointer
+  box-shadow: 0 6px 20px rgba(0,0,0,.2)
+  transition: transform .2s ease, background .2s ease
+
+  &:hover
+    transform: scale(1.05)
+
+  &.prev
+    left: 12px
+
+  &.next
+    right: 12px
+
+.dots
+  position: absolute
+  bottom: 12px
+  left: 50%
+  transform: translateX(-50%)
+  display: flex
+  gap: 8px
+
+  button
+    width: 8px
+    height: 8px
+    border: none
+    border-radius: 50%
+    background: rgba(255,255,255,.7)
+    cursor: pointer
+
+    &.active
+      width: 22px
+      border-radius: 999px
+      background: #fff
+
+.categories
+  h2
+    margin: 0 0 .75rem
+
+  .grid
+    display: grid
+    grid-template-columns: repeat(6, minmax(0, 1fr))
+    gap: 1rem
+
+.tile
+  perspective: 700px
+
+  .tile-inner
+    background: #fff
+    border-radius: 12px
+    border: 1px solid rgba(0,0,0,.08)
+    padding: 1rem
+    min-height: 160px
+    display: grid
+    place-items: center
+    gap: .35rem
+    transition: transform .16s ease
+    will-change: transform
+
+    .tile-image
+      width: 72px
+      height: 72px
+      object-fit: contain
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,.12))
+
+    h3
+      margin: 0 0 .25rem
+
+    .browse
+      color: #146eb4
+      text-decoration: none
+      font-weight: 600
+
+.fly-ghost
+  width: 32px
+  height: 32px
+  background: #FF9900
+  border-radius: 50%
+  box-shadow: 0 10px 24px rgba(255,153,0,.5)
+  transition: transform .8s cubic-bezier(.22,.68,0,1), opacity .8s ease
+
+// Scroll reveal
+[data-reveal]
+  opacity: 0
+  transform: translateY(16px)
+  transition: opacity .6s ease, transform .6s ease
+
+.revealed
+  opacity: 1
+  transform: none
+
+
+
+@media (max-width: 1024px)
+  .featured .carousel
+    // grid-auto-columns: calc(33.333% - 0.75rem)
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
+
+@media (max-width: 768px)
+  .featured .carousel
+    // grid-auto-columns: calc(50% - 0.5rem)
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr))
+
+@media (max-width: 520px)
+  .featured .carousel
+    // grid-auto-columns: 100%
+    grid-template-columns: 1fr
+
+.home
+  max-width: 1200px
+  margin-inline: auto
+  padding-inline: clamp(1rem, 3vw, 2rem)
+
+// Featured carousel: wrap instead of horizontal scroll
+.featured
+  .carousel
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))
+    gap: 1rem
+    padding: .5rem 0
+    /* remove horizontal scrolling and snap */
+    overflow: visible
+    scroll-snap-type: none
+
+  .card
+    grid-template-rows: auto auto
+
+    img
+      width: 100%
+      height: auto
+      aspect-ratio: 4 / 3
+      object-fit: cover
+      border-top-left-radius: 12px
+      border-top-right-radius: 12px
+
+@media (max-width: 1024px)
+  .featured .carousel
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
+
+@media (max-width: 640px)
+  .home
+    gap: 1.25rem
+
+  .featured .carousel
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr))
+
+  .featured .cnav
+    display: none
+
+// Remove hiding overflow completely
+// .home
+//   overflow-x: hidden
+
+@media (max-width: 1024px)
+  .hero-slider
+    height: 320px
+
+  .slide .content h1
+    font-size: 2rem
+
+  .slide .content p
+    font-size: 1rem
+
+@media (max-width: 640px)
+  .home
+    gap: 1.25rem
+
+  .hero-slider
+    height: 260px
+
+  .nav
+    width: 36px
+    height: 36px
+    font-size: 20px
+
+  .dots button
+    width: 6px
+    height: 6px
+
+  .slide .content h1
+    font-size: 1.6rem
+
+  .slide .content p
+    font-size: .95rem
+
+  .slide .content .cta
+    padding: .6rem 1rem
+
+  .categories .grid
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr))
+
+  .tile .tile-inner
+    min-height: 140px
+    gap: .25rem
+
+  .featured .carousel
+    grid-auto-columns: 80%
+
+  .featured .card
+    grid-template-rows: 48vw auto
+
+  .featured .cnav
+    display: none

@@ -1,0 +1,29 @@
+<section class="wishlist-page">
+  <header class="head">
+    <h1>Wishlist</h1>
+    <button class="clear" (click)="clear()" [disabled]="wishlist.count() === 0">Clear</button>
+  </header>
+
+  @if (wishlist.count() === 0) {
+    <p class="empty">Your wishlist is empty.</p>
+    <a class="link" routerLink="/products">Browse products</a>
+  } @else {
+    <ul class="list">
+      @for (item of wishlist.products(); track item.id) {
+        <li class="row">
+          <a routerLink="/products/{{ item.id }}" class="thumb">
+            <img [src]="item.imageUrl" [alt]="item.title" />
+          </a>
+          <div class="meta">
+            <a routerLink="/products/{{ item.id }}" class="name">{{ item.title }}</a>
+            <div class="price">${{ item.price }}</div>
+          </div>
+          <div class="actions">
+            <button (click)="addToCart(item.id)">Add to cart</button>
+            <button (click)="remove(item.id)">Remove</button>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+</section>

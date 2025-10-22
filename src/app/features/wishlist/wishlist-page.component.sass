@@ -1,0 +1,68 @@
+.wishlist-page
+  padding: 24px
+
+  .head
+    display: flex
+    align-items: center
+    justify-content: space-between
+    margin-bottom: 16px
+
+  .empty
+    margin: 16px 0
+    color: var(--muted)
+
+  .list
+    list-style: none
+    padding: 0
+    margin: 0
+    display: grid
+    grid-template-columns: 1fr
+    gap: 12px
+
+  .row
+    display: grid
+    grid-template-columns: 96px 1fr auto
+    gap: 12px
+    padding: 12px
+    border: 1px solid var(--border)
+    border-radius: 8px
+    background: var(--surface)
+
+  .thumb img
+    width: 96px
+    height: 96px
+    object-fit: cover
+    border-radius: 6px
+
+  .name
+    font-weight: 600
+    color: var(--text)
+
+  .price
+    color: var(--muted)
+
+  .actions
+    display: flex
+    flex-direction: column
+    gap: 8px
+
+  button
+    padding: 8px 12px
+    border: 1px solid var(--border)
+    border-radius: 6px
+    background: transparent
+    color: var(--text)
+    cursor: pointer
+
+  button:hover
+    border-color: var(--primary)
+
+  @media (max-width: 640px)
+    .row
+      grid-template-columns: 1fr
+    .thumb img
+      width: 100%
+      height: auto
+    .actions
+      flex-direction: row
+      flex-wrap: wrap

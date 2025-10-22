@@ -1,0 +1,51 @@
+<section class="cart-page">
+  <header class="toolbar">
+    <h1>Your Cart</h1>
+    <a class="back" [routerLink]="['/products']">← Continue Shopping</a>
+  </header>
+
+  @if (hasItems()) {
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of cart.items(); track item.productId) {
+          <tr>
+            <td class="prod">
+              <img [src]="item.imageUrl" [alt]="item.title" />
+              <div>
+                <div class="title">{{ item.title }}</div>
+                <div class="category">{{ item.category }}</div>
+              </div>
+            </td>
+            <td>{{ item.price | currency }}</td>
+            <td>
+              <input type="number" min="1" #qty [value]="item.quantity" (input)="updateQty(item.productId, qty.valueAsNumber || item.quantity)" />
+            </td>
+            <td>{{ (item.price * item.quantity) | currency }}</td>
+            <td>
+              <button class="remove" (click)="cart.remove(item.productId)">Remove</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+    <div class="summary">
+      <div class="total">Total: {{ cart.totalPrice() | currency }}</div>
+      <div class="actions">
+        <button class="clear" (click)="cart.clear()">Clear Cart</button>
+        <a class="checkout" [routerLink]="['/checkout']">Checkout</a>
+      </div>
+    </div>
+  } @else {
+    <p class="empty">Your cart is empty.</p>
+  }
+</section>

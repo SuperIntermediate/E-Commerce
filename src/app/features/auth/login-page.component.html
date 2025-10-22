@@ -1,0 +1,38 @@
+<section class="auth-page">
+  <header class="toolbar">
+    <h1>Login</h1>
+    <a class="link" [routerLink]="['/signup']">Create account</a>
+  </header>
+
+  <form class="form" novalidate>
+    <div class="role-switch">
+      <span>Login as</span>
+      <label>
+        <input type="radio" name="role" [(ngModel)]="roleTarget" value="customer" />
+        Customer
+      </label>
+      <label>
+        <input type="radio" name="role" [(ngModel)]="roleTarget" value="seller" />
+        Seller
+      </label>
+    </div>
+    <label>
+      Email
+      <input type="email" name="email" [(ngModel)]="email" required />
+    </label>
+    <label>
+      Password
+      <input type="password" name="password" [(ngModel)]="password" required />
+    </label>
+
+    <button class="submit" [disabled]="!email || !password" (click)="login()">Login</button>
+    @if (error) {
+      <p class="error">{{ error }}</p>
+    }
+  </form>
+
+  <div class="oauth">
+    <p>Or continue with</p>
+    <button class="google" disabled>Google (coming soon)</button>
+  </div>
+</section>

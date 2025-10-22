@@ -1,0 +1,39 @@
+<section class="home">
+  <div class="hero-slider" (mouseenter)="stopAutoplay()" (mouseleave)="startAutoplay()" (mousemove)="onHeroMove($event)" [style.--mx.px]="mx()" [style.--my.px]="my()" data-reveal>
+    @for (slide of slides; track slide.title; let i = $index) {
+      <div class="slide" [class.active]="active() === i" [style.background]="slide.bg">
+        <div class="content">
+          <h1>{{ slide.title }}</h1>
+          <p>{{ slide.subtitle }}</p>
+          <a class="cta" routerLink="/products" (click)="flyToCart($event)">Shop Now</a>
+        </div>
+      </div>
+    }
+
+    <button class="nav prev" (click)="prev()" aria-label="Previous">‹</button>
+    <button class="nav next" (click)="next()" aria-label="Next">›</button>
+
+    <div class="dots">
+      @for (s of slides; let i = $index; track i) {
+        <button [class.active]="active() === i" (click)="go(i)" aria-label="Go to slide {{ i + 1 }}"></button>
+      }
+    </div>
+  </div>
+
+  <div class="categories" data-reveal>
+    <h2>Explore Categories</h2>
+    <div class="grid">
+      @for (cat of categories; track cat.name) {
+        <article class="tile" #tile (mousemove)="tilt($event, tile)" (mouseleave)="resetTilt(tile)">
+          <div class="tile-inner">
+            <app-optimized-image class="tile-image" [src]="cat.image" [alt]="cat.name" />
+            <h3>{{ cat.name }}</h3>
+            <a class="browse" routerLink="/products">Browse</a>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+
+
+</section>

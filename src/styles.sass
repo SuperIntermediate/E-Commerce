@@ -1,1 +1,126 @@
 /* You can add global styles to this file, and also import other style files */
+
+// Light/Dark theme variables and overrides
+:root
+  --bg: #ffffff
+  --text: #111111
+  --surface: #ffffff
+  --border: #eeeeee
+  --muted: #666666
+  --primary: #1976d2
+  --accent: #007bff
+
+.theme-dark
+  --bg: #121212
+  --text: #eaeaea
+  --surface: #1e1e1e
+  --border: #2a2a2a
+  --muted: #aaaaaa
+  --primary: #90caf9
+  --accent: #64b5f6
+
+body
+  background: var(--bg)
+  color: var(--text)
+
+/* Header overrides */
+.site-header
+  background: #fafafa
+  border-bottom: 1px solid #eee
+
+.theme-dark .site-header
+  background: #1b1b1b
+  border-bottom-color: #2a2a2a
+  .nav .brand
+    color: #eaeaea
+  .nav .link
+    color: #90caf9
+
+/* Generic surface overrides for common panels */
+.theme-dark .products-page .card,
+.theme-dark .checkout-page .address,
+.theme-dark .checkout-page .summary,
+.theme-dark .admin-products .product-form,
+.theme-dark .admin-categories .panel,
+.theme-dark .orders-page .orders-table,
+.theme-dark .admin-orders .orders-table
+  background: var(--surface)
+  border-color: var(--border)
+
+/* Base link color override */
+a, .link
+  color: var(--primary)
+
+.theme-dark a, .theme-dark .link
+  color: var(--primary)
+
+/* Mobile-friendly defaults */
+img
+  max-width: 100%
+  height: auto
+
+.table-scroll
+  overflow-x: auto
+  -webkit-overflow-scrolling: touch
+
+@media (max-width: 640px)
+  .hide-sm
+    display: none
+
+/* Stylish buttons */
+button, .btn
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  gap: .35rem
+  padding: .55rem 1rem
+  border-radius: .6rem
+  border: 1px solid transparent
+  font-weight: 600
+  cursor: pointer
+  transition: background .2s ease, color .2s ease, box-shadow .2s ease, border-color .2s ease
+  background: var(--surface)
+  color: var(--text)
+  box-shadow: 0 4px 14px rgba(0,0,0,.08)
+  &:hover
+    box-shadow: 0 6px 18px rgba(0,0,0,.12)
+
+button:focus-visible, .btn:focus-visible
+  outline: none
+  box-shadow: 0 0 0 3px rgba(100,181,246,.35)
+
+/* Variants mapped to existing classes */
+.btn-primary, .primary, .add, .checkout
+  background: linear-gradient(90deg, var(--primary), var(--accent))
+  color: #fff
+  border-color: rgba(25,118,210,.8)
+  &:hover
+    filter: brightness(1.05)
+
+.btn-outline, .wish, .remove, .cancel, .clear
+  background: transparent
+  color: var(--primary)
+  border-color: var(--primary)
+  &:hover
+    background: rgba(25,118,210,.08)
+
+.btn-danger, .danger
+  background: #b00020
+  color: #fff
+  border-color: #b00020
+  &:hover
+    filter: brightness(1.05)
+
+/* Sizes */
+.btn-sm
+  padding: .35rem .6rem
+  border-radius: .5rem
+
+.btn-lg
+  padding: .75rem 1.25rem
+  border-radius: .75rem
+
+/* Dark theme button surface */
+.theme-dark button, .theme-dark .btn
+  background: rgba(30,30,30,.8)
+  color: var(--text)

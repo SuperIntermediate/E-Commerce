@@ -1,0 +1,35 @@
+<section class="admin-users">
+  <header class="toolbar">
+    <h2>Users Management</h2>
+  </header>
+
+  <table class="users-table">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of users()">
+        <td>{{ u.email }}</td>
+        <td>{{ u.name }}</td>
+        <td>
+          <select [ngModel]="roleByEmail()[u.email] ?? u.role" (ngModelChange)="changeRole(u.email, $event)" name="role-{{u.email}}">
+            <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
+          </select>
+        </td>
+        <td>
+          <button class="primary" (click)="saveRole(u.email)">Save Role</button>
+          <button class="danger" (click)="delete(u.email)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  @if (users().length === 0) {
+    <p class="empty">No users registered.</p>
+  }
+</section>
