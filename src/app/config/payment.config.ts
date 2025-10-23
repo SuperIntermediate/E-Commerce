@@ -14,7 +14,7 @@ export const PaymentConfig = {
   stripePaymentLinkUrl: '',
 
   // Optional backend base URL for server-assisted flows (Stripe session, Razorpay order, Paytm token)
-  backendBaseUrl: 'http://localhost:8080',
+  backendBaseUrl: '',
 
   // Paytm configuration (Sandbox/STAGE)
   paytmMid: '', // Merchant ID
