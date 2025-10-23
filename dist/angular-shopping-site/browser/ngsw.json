@@ -1,0 +1,145 @@
+{
+  "configVersion": 1,
+  "timestamp": 1761199327072,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/chunk-5S765T3W.js",
+        "/chunk-5YNPKFOD.js",
+        "/chunk-7GMC5TX5.js",
+        "/chunk-AFNOJ6LN.js",
+        "/chunk-B7GYXW7L.js",
+        "/chunk-BGPM6P37.js",
+        "/chunk-BTFJKPCX.js",
+        "/chunk-E2OGFL4U.js",
+        "/chunk-EVHJ244Z.js",
+        "/chunk-F74XCPSL.js",
+        "/chunk-HE5TQUO2.js",
+        "/chunk-JHWPR2OY.js",
+        "/chunk-LXBKTAHS.js",
+        "/chunk-MCFIEPVZ.js",
+        "/chunk-MQBGRNKI.js",
+        "/chunk-NLGJBOTA.js",
+        "/chunk-O3YO7DZK.js",
+        "/chunk-P6UQ6CY5.js",
+        "/chunk-QOUFW4PP.js",
+        "/chunk-RUAZL4YI.js",
+        "/chunk-SV7RER2E.js",
+        "/chunk-VG3RM2V7.js",
+        "/chunk-WJOO4EQK.js",
+        "/chunk-X4ICOVMA.js",
+        "/chunk-YFYQOU26.js",
+        "/chunk-YQELJHLD.js",
+        "/chunk-Z25U6WTC.js",
+        "/favicon.ico",
+        "/index.html",
+        "/main-YICCKXY4.js",
+        "/manifest.webmanifest",
+        "/polyfills-5CFQRCPP.js",
+        "/styles-E3ESB2NC.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/icons/beauty.svg",
+        "/icons/books.svg",
+        "/icons/electronics.svg",
+        "/icons/fashion.svg",
+        "/icons/home.svg",
+        "/icons/icon-128x128.png",
+        "/icons/icon-144x144.png",
+        "/icons/icon-152x152.png",
+        "/icons/icon-192x192.png",
+        "/icons/icon-384x384.png",
+        "/icons/icon-512x512.png",
+        "/icons/icon-72x72.png",
+        "/icons/icon-96x96.png",
+        "/icons/sports.svg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/chunk-5S765T3W.js": "738f38358910b179c5fbb2e97055a70791b3d0f9",
+    "/chunk-5YNPKFOD.js": "b8acfa58a661a2a04cab409bc426d538cfe22b22",
+    "/chunk-7GMC5TX5.js": "f74176e666c845e26ca898051e27ec35d5d4438c",
+    "/chunk-AFNOJ6LN.js": "f4d7dbefe808f2fdd02bde696e189bb780c9eb60",
+    "/chunk-B7GYXW7L.js": "7293e2a99a16c3bae88dcba24c6397add2b51aa7",
+    "/chunk-BGPM6P37.js": "e752176e80dec8af1bfa06b024eb9ae663e88072",
+    "/chunk-BTFJKPCX.js": "39f6ab16777442db7ce431bcb68e06b174abab3b",
+    "/chunk-E2OGFL4U.js": "3aa98e1097829b102681ee6c34459fb73dd62f2d",
+    "/chunk-EVHJ244Z.js": "80e52f7192b34e1377d97014a3a23e8b3bf315d4",
+    "/chunk-F74XCPSL.js": "ff6259346ce2d7247ba7efe733d8b66e0e076d71",
+    "/chunk-HE5TQUO2.js": "5ab3067632d24c2d341b6317bdfbd36c841f5f74",
+    "/chunk-JHWPR2OY.js": "35106326109ae5092c30545b453317476d24b848",
+    "/chunk-LXBKTAHS.js": "922dd952a76f10e954eff0ad7c5cf7b2676c5628",
+    "/chunk-MCFIEPVZ.js": "00cb6ec5983f8ceb8b1981ec45aa23497e17f779",
+    "/chunk-MQBGRNKI.js": "f17803dc2369bae4abd8b87eee58f810008dff30",
+    "/chunk-NLGJBOTA.js": "f15636d35fd40747c68889a24be38302890e861b",
+    "/chunk-O3YO7DZK.js": "0249b49e0eca626682215be9119592da544a9d5e",
+    "/chunk-P6UQ6CY5.js": "3fc78d5ae64a3eb9d2a47872857d9b615bba7846",
+    "/chunk-QOUFW4PP.js": "668ac496f953d5a1e14737716ff072e726b2b65c",
+    "/chunk-RUAZL4YI.js": "b283e0d58776cca6a8fc0684298420b7a50ae4a7",
+    "/chunk-SV7RER2E.js": "67ac3b36eb45955ba4fc7b7a7a55b258733b954f",
+    "/chunk-VG3RM2V7.js": "e1f942d1a2c25ac1079fd7ad0d25fdfe9c19ec37",
+    "/chunk-WJOO4EQK.js": "8e66482ee066ed2b468eeb375f3089aff6c231a9",
+    "/chunk-X4ICOVMA.js": "32370c9b059f0222c12c2360f2b239aaabbfcce0",
+    "/chunk-YFYQOU26.js": "0c9484dc8875837717b959397f6f5d20b2024b57",
+    "/chunk-YQELJHLD.js": "b09968df33fa119e36f3f920ea4c4389da0e8904",
+    "/chunk-Z25U6WTC.js": "4336c7d8d917eda6c00fb6e49f58b6a3da46c893",
+    "/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
+    "/icons/beauty.svg": "fd6592771db10d28e53c8104cb831dc557fb48fd",
+    "/icons/books.svg": "83f9605dc673ad00d45296ba09509b72b780daee",
+    "/icons/electronics.svg": "dbf0d932d519dca135ad7e5f9b8a3a9b48893aae",
+    "/icons/fashion.svg": "17781fd1e3d352da2382d8dabc6184f7abeac894",
+    "/icons/home.svg": "1082e471f0cdf6f223a963f291fdce01a4325a77",
+    "/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
+    "/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
+    "/icons/icon-152x152.png": "eae6e0f0c8afb8aaae339e2a569b43e9238e5e6c",
+    "/icons/icon-192x192.png": "15c4180454633880d98674aa7394656196c91584",
+    "/icons/icon-384x384.png": "94a915751ef6c9282df9aea405ad679230631814",
+    "/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
+    "/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
+    "/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
+    "/icons/sports.svg": "09b5340877b9dca22a669a38432c4a65ddf77cfd",
+    "/index.html": "aeb1a21a870f064a7e70171d461409350145120f",
+    "/main-YICCKXY4.js": "979e97caf4c7c6025455af15b22445824d2c1c51",
+    "/manifest.webmanifest": "28a22d212fe1f849794ea46b541991c6fe529548",
+    "/polyfills-5CFQRCPP.js": "f2241e9a25858f895ce299d15f6f22e849e2fd72",
+    "/styles-E3ESB2NC.css": "60444e1f8e427bd10ec0398afe5a5f9b5ef7e269"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
